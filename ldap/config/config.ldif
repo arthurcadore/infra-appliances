@@ -1,0 +1,62 @@
+# domain "pedremp.local"
+dn: dc=pedremp,dc=local
+objectClass: top
+objectClass: domain
+dc: pedremp
+
+# organizacional Unit "Groups"
+dn: ou=Groups,dc=pedremp,dc=local
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+# Criar o grupo LDAP
+dn: cn=LDAP,ou=Groups,dc=pedremp,dc=local
+objectClass: top
+objectClass: groupOfNames
+cn: LDAP
+member: cn=ana,ou=Users,dc=pedremp,dc=local
+member: cn=ricardo,ou=Users,dc=pedremp,dc=local
+member: cn=arthur,ou=Users,dc=pedremp,dc=local
+member: cn=guilherme,ou=Users,dc=pedremp,dc=local
+member: cn=rodrigo,ou=Users,dc=pedremp,dc=local
+member: cn=roosvelt,ou=Users,dc=pedremp,dc=local
+
+# organizacional Unit "Users"
+dn: ou=Users,dc=pedremp,dc=local
+objectClass: top
+objectClass: organizationalUnit
+ou: Users
+
+# User Ana
+dn: cn=ana,ou=Users,dc=pedremp,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: ana
+sn: Remp
+uid: ana
+userPassword: anapass
+
+# User Arthur
+dn: cn=arthur,ou=Users,dc=pedremp,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: arthur
+sn: Usuario
+uid: arthur
+userPassword: {SSHA}qA8LKHHZ2nwAlo2p7d9EKkJZbczAUO1P
+
+# User Ricardo
+dn: cn=ricardo,ou=Users,dc=pedremp,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: ricardo
+sn: Usuario
+uid: ricardo
+userPassword: ricardopass

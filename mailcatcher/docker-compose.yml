@@ -9,7 +9,7 @@ services:
       - "1080:1080"
       - "1025:1025"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://zabbix-server:10051/"]
+      test: ["CMD", "wget", "--spider", "http://127.0.0.1:1080/"]
       interval: 10s
       timeout: 5s
       retries: 3

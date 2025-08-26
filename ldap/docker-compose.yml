@@ -1,0 +1,35 @@
+services:
+  # ===============================================================
+  # LDAP Server (Official Image)
+  ldap-server:
+    image: bitnami/openldap:2.6.10
+    container_name: ldap-server
+    restart: unless-stopped
+    ports:
+        - '389:1389'
+        - '636:1636'
+    networks:
+      infra_backend:
+        aliases:
+          - ldap-server
+      infra_frontend:
+        aliases:
+          - ldap-server
+    healthcheck:
+      test: ["CMD", "ldapsearch", "-x", "-H", "ldap://localhost:1389", "-b", "dc=pedremp,dc=local", "-s", "base"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    user: '0'
+    volumes:
+      - './config:/ldifs/custom'
+      - './data:/bitnami/openldap'
+    env_file:
+      - ./env/.ldap.env
+
+networks:
+  infra_frontend:
+    external: true
+  infra_backend:
+    external: true
