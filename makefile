@@ -33,6 +33,8 @@ deploy-services:
 	@echo "Selecione os serviços para fazer o deploy:"
 	@echo "1 - Grafana"
 	@echo "2 - Zabbix"
+	@echo "3 - LDAP"
+	@echo "4 - mailcatcher"
 	@echo "Escolha uma ou mais opções separadas por espaço (ex: 1 2): "
 	@read -r choice; \
 	for ch in $$choice; do \
@@ -42,6 +44,12 @@ deploy-services:
 		elif [ $$ch -eq 2 ]; then \
 			echo "Fazendo deploy do Zabbix..."; \
 			$(MAKE) -C ./zabbix; \
+		elif [ $$ch -eq 3 ]; then \
+			echo "Fazendo deploy do LDAP..."; \
+			$(MAKE) -C ./ldap; \
+		elif [ $$ch -eq 4 ]; then \
+			echo "Fazendo deploy do mailcatcher..."; \
+			$(MAKE) -C ./mailcatcher; \
 		else \
 			echo "Opção $$ch inválida"; \
 		fi \
@@ -51,6 +59,8 @@ remove-services:
 	@echo "Selecione os serviços para remover:"
 	@echo "1 - Grafana"
 	@echo "2 - Zabbix"
+	@echo "3 - LDAP"
+	@echo "4 - mailcatcher"
 	@echo "Escolha uma ou mais opções separadas por espaço (ex: 1 2): "
 	@read -r choice; \
 	for ch in $$choice; do \
@@ -60,7 +70,13 @@ remove-services:
 		elif [ $$ch -eq 2 ]; then \
 			echo "Removendo Zabbix..."; \
 			$(MAKE) -C ./zabbix clean; \
+		elif [ $$ch -eq 3 ]; then \
+			echo "Removendo LDAP..."; \
+			$(MAKE) -C ./ldap clean; \
+		elif [ $$ch -eq 4 ]; then \
+			echo "Removendo mailcatcher..."; \
+			$(MAKE) -C ./mailcatcher clean; \
 		else \
 			echo "Opção $$ch inválida"; \
-		fi \
+		fi; \
 	done
