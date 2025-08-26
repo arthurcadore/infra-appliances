@@ -1,0 +1,27 @@
+services:
+  # ===============================================================
+  # Grafana Server
+  grafana-server:
+    container_name: grafana-server
+    image: grafana/grafana:11.5-ubuntu
+    networks:
+      infra_backend:
+        aliases:
+          - grafana-server
+      infra_frontend:
+        aliases:
+          - grafana-server
+    restart: always
+    ports:
+      - "3000:3000"
+    user: '0'
+    volumes:
+      - "./data:/var/lib/grafana"
+    env_file:
+      - ./env/.grafana.env
+
+networks:
+  infra_frontend:
+    external: true
+  infra_backend:
+    external: true
