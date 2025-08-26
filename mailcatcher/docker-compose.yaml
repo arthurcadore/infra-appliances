@@ -1,0 +1,30 @@
+services:
+  # ===============================================================
+  # Mail Catcher - SMTP Server
+  smtp-server:
+    image: dockage/mailcatcher:0.9
+    container_name: smtp-server
+    restart: unless-stopped
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://zabbix-server:10051/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      infra_backend:
+        aliases:
+          - smtp-server
+      infra_frontend:
+        aliases:
+          - smtp-server
+    stop_grace_period: 30s
+
+networks:
+  infra_frontend:
+    external: true
+  infra_backend:
+    external: true

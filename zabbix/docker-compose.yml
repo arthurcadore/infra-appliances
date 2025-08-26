@@ -7,12 +7,6 @@ services:
     restart: unless-stopped
     ports:
       - "10051:10051"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10051/"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
