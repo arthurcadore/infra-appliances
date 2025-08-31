@@ -1,0 +1,22 @@
+services:  
+  infradb:
+    container_name: infradb
+    image: mysql:8.0.34
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    user: '0'
+    environment:
+      MYSQL_ROOT_PASSWORD: cadoreinfra
+      MYSQL_DATABASE: infradb
+      MYSQL_USER: infrauser
+      MYSQL_PASSWORD: Infra%%pass
+    volumes:
+      - "./data:/var/lib/mysql"
+      - "./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
