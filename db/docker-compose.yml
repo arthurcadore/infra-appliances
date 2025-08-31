@@ -20,3 +20,16 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+    networks:
+      infra_backend:
+        aliases:
+          - infradb
+      infra_frontend:
+        aliases:
+          - infradb
+
+networks:
+  infra_frontend:
+    external: true
+  infra_backend:
+    external: true
