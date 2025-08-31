@@ -29,6 +29,10 @@ install-docker:
 	@echo "Instalando o Docker e Docker Compose"
 	$(MAKE) -C ./scripts
 
+install-submodules: 
+	@echo "Instalando submódulos"
+	git submodule update --init --recursive
+
 deploy-services:
 	@echo "Selecione os serviços para fazer o deploy:"
 	@echo "1 - Grafana"

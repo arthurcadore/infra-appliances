@@ -1,0 +1,4 @@
+[submodule "ztp"]
+	path = ztp
+	url = https://github.com/arthurcadore/ztp-appliance
+	branch = prod
