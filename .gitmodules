@@ -2,3 +2,7 @@
 	path = ztp
 	url = https://github.com/arthurcadore/ztp-appliance
 	branch = prod
+[submodule "syslog"]
+	path = syslog
+	url = https://github.com/arthurcadore/syslog-appliance
+	branch = prod
