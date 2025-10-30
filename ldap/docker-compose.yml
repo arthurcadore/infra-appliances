@@ -2,7 +2,7 @@ services:
   # ===============================================================
   # LDAP Server (Official Image)
   ldap-server:
-    image: bitnami/openldap:2.6.10
+    image: arthurcadore/my-ldapserver:2.6.8
     container_name: ldap-server
     restart: unless-stopped
     ports:
