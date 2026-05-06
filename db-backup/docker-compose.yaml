@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  db-backup:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+
+    container_name: mariadb-backup
+    restart: always
+
+    env_file:
+      - ./env/.backup.env
+
+    volumes:
+      - /home/cadore/intelbras/backup-test/backup/full:/var/lib/mysql:ro
+      - ./backup:/backup
+      
+    networks:
+      - dbnet
+
+  mariadb:
+    image: mariadb:10.3
+    container_name: mariadb8
+    restart: always
+
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+
+    volumes:
+      - /home/cadore/intelbras/backup-test/backup/full:/var/lib/mysql
+
+    networks:
+      - dbnet
+
+networks:
+  dbnet:
+    driver: bridge
+
+volumes:
+  v1:
