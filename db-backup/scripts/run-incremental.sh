@@ -34,6 +34,4 @@ mariabackup \
   --incremental-basedir="$BASE_DIR" \
   --target-dir="$INC_DIR"
 
-echo "$NEXT_INC" > "$META/inc_count"
-
 echo "[INC] Done ($NEXT_INC)"

@@ -20,6 +20,4 @@ mariabackup \
 
 mariabackup --prepare --target-dir="$FULL_DIR"
 
-echo "0" > /backup/meta/inc_count
-
 echo "[FULL] Done"

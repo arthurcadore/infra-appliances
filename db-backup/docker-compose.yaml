@@ -4,17 +4,13 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-
+    image: arthurcadore/mysql-dbbackup:1.0.2
     container_name: mariadb-backup
-    restart: always
-
     env_file:
       - ./env/.backup.env
-
     volumes:
       - /home/cadore/intelbras/backup-test/backup/full:/var/lib/mysql:ro
       - ./backup:/backup
-      
     networks:
       - dbnet
 
@@ -22,13 +18,10 @@ services:
     image: mariadb:10.3
     container_name: mariadb8
     restart: always
-
     environment:
       MARIADB_ROOT_PASSWORD: root
-
     volumes:
       - /home/cadore/intelbras/backup-test/backup/full:/var/lib/mysql
-
     networks:
       - dbnet
 
